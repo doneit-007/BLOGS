@@ -4,21 +4,27 @@
 
 <h1 id = "hcompose">Edit/Delete</h1>
 <br/>
-<form action = "/post_edit" method = "POST">
+<%var action1 = "/post_edit/" + blog.title + "?query=delete";%>
+<%var action2 = "/post_edit/" + blog.title + "?query=edit";%>
+<%console.log(blog)%>
+<form action = "<%=action1%>" method = "POST">
 <p>Title</p>
-<textarea id = "title" name = "blog_title" ></textarea>
+<textarea id = "title" name = "blog_title" ><%=blog.title%></textarea>
 <br/>
 <br/>
 <p>Date</p>
-<textarea id = "image"  name = "blog_date"></textarea>
+<textarea id = "image"  name = "blog_date"><%=blog.date%></textarea>
 <br/>
 <br/>
 <p>Post</p>
-<textarea id = "post"  name = "blog_post"></textarea>
+<textarea id = "post"  name = "blog_post"><%=blog.post%></textarea>
 <br/>
 <br/>
-<button  id = "publish" type = "submit" name= "edit" value = "<%=blogtitle%>">Edit and Publish</button>
-<button  id = "publish" type = "submit" name= "delete" value = "<%=blogtitle%>">Delete</button>
+<button  id = "publish" type = "submit" name = "edit" formaction= "<%=action2%>">Edit and Publish</button>
+<button  id = "publish" type = "submit" name = "delete" formaction= "<%=action1%>">Delete</button>
 </form>
 </div>
 <%-include("partials/footer")%>
+
+
+

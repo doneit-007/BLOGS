@@ -202,31 +202,50 @@ else
 });
 var src = "\\images\\"
 app.post('/compose',function(req,res){
-     
-     const dir1 = __dirname +"\\public" + src +req.body.blog_date + ".jpg" ;
+     if(req.isAuthenticated())
+  {  
+     if(req.user.username==process.env.ADMIN)
+       {
+        const dir1 = __dirname +"\\public" + src +req.body.blog_date + ".jpg" ;
      const dir2 = __dirname +"\\public" + src+ req.body.blog_date + ".png" ;
      console.log(dir1);
  
      if (fs.existsSync(dir1)) {
          var blog = new Blog({title: req.body.blog_title,
-		post:req.body.blog_post,
-		imgsrc:src +req.body.blog_date + ".jpg" ,
-	    date :req.body.blog_date ,count:0});
+    post:req.body.blog_post,
+    imgsrc:src +req.body.blog_date + ".jpg" ,
+      date :req.body.blog_date ,count:0});
          blog.save();
        } 
      else {
           var blog = new Blog({title: req.body.blog_title,
-		post:req.body.blog_post,
-		imgsrc: src+ req.body.blog_date + ".png" ,
-	    date :req.body.blog_date,count:0});
+    post:req.body.blog_post,
+    imgsrc: src+ req.body.blog_date + ".png" ,
+      date :req.body.blog_date,count:0});
           blog.save();
       }
-	
-		
+  
+    
 
-res.redirect('/');
-	
+     res.redirect('/');
+       }
+else
+{
+  var string = encodeURIComponent('You are not admin !!');
+  res.redirect('/signup-login?valid=' + string);
+
+    
+}
+}
+  else
+  {
+     var string = encodeURIComponent('You are not admin !!');
+  res.redirect('/signup-login?valid=' + string);
+  }
+  
 });
+     
+
 app.get('/post/:blogtitle',function(req,res){
   
  Blog.findOne({title:req.params.blogtitle},function(err,blog){
@@ -240,12 +259,6 @@ app.get('/post/:blogtitle',function(req,res){
  });
 
 });
-app.get('/post_edit/:blogtitle',function(req,res){
-  
- res.render('post_edit',{blogtitle:req.params.blogtitle});
-
-});
-
 app.post('/post/:blogtitle',function(req,res){
   
  Blog.findOne({title:req.params.blogtitle},function(err,blog){
@@ -257,6 +270,101 @@ app.post('/post/:blogtitle',function(req,res){
   res.send("Page not found");
 
  });
+
+});
+
+
+app.get('/post_edit/:blogtitle',function(req,res){
+  
+
+  if(req.isAuthenticated())
+  {  
+     if(req.user.username==process.env.ADMIN)
+       {  Blog.findOne({title:req.params.blogtitle},function(err,blog){
+        
+          res.render('post_edit',{blog:blog});
+           });
+       }
+   else
+     {
+  
+            res.redirect('/post/req.params.blogtitle');
+    
+     }
+}
+  else
+  {
+     var string = encodeURIComponent('You are not admin !!');
+      res.redirect('/signup-login?valid=' + string);
+  }
+
+});
+
+app.post('/post_edit/:blogtitle',function(req,res){
+  
+ if(req.isAuthenticated())
+  {  
+     if(req.user.username==process.env.ADMIN)
+       {  
+               if(req.query.query=="edit"){
+                    
+
+                  Blog.updateOne({title:req.params.blogtitle},
+                    {title:req.body.blog_title,date:req.body.blog_date,post:req.body.blog_post},function(err,result){
+
+                          if(err)
+                          {
+                            console.log(err);
+                               res.redirect('/post_edit/:' + req.params.blogtitle);
+
+                          }
+                          else
+                          {
+
+                                    res.redirect('/');
+                          }
+                    });
+
+               }
+               else
+               {
+
+   
+                    Blog.remove({title:req.params.blogtitle},function(err,result){
+                        if(err)
+                          {
+                            console.log(err);
+                               res.redirect('/post_edit/:' + req.params.blogtitle);
+
+                          }
+                          else
+                          {
+
+                                    res.redirect('/');
+                          }
+
+
+                    });
+
+               }
+
+
+
+           
+
+       }
+else
+     {
+  
+            res.redirect('/post/req.params.blogtitle');
+    
+     }
+}
+  else
+  {
+     var string = encodeURIComponent('You are not admin !!');
+      res.redirect('/signup-login?valid=' + string);
+  }
 
 });
 app.listen('3000',function(req,res){
