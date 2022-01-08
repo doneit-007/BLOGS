@@ -1,0 +1,481 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap");
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro|Open+Sans:300);
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1,
+li,
+a,
+button {
+  font-family: "Montserrat", san-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #ffff;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  /* justify-content: flex-end;*/
+  align-items: center;
+  padding: 15px 10%;
+  background-color: #030033;
+  box-shadow: 0px 0px 20px 0;
+}
+
+.logo {
+  color: #ffffff;
+  /*margin-right: auto;*/
+  cursor: pointer;
+}
+
+.nav_links {
+  position: relative;
+  left:380px;
+  align-content: right;
+  list-style: none;
+}
+
+.nav_links li {
+  display: inline-block;
+  padding: 0px 10px;
+}
+
+.nav_links li a {
+  transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+  color: #0088a9;
+}
+#linkedin{
+position: relative;
+left: 380px;
+ padding: 0px;
+ margin: 1px;
+  border-radius: 5px;
+  z-index: 0;
+}
+#gmail{
+position: relative;
+right: 40px;
+ padding: 0px;
+ margin: 1px;
+  border-radius: 5px;
+  z-index: 0;
+}
+/*button {
+  padding: 9px 25px;
+  background-color: rgba(0, 136, 169, 1);
+  border-radius: 50px;
+  cursor: pointer;
+  border: none;
+}
+
+button:hover {
+  background-color: rgba(0, 136, 169, 0.8);
+}*/
+h4
+ {
+  
+  font-family: "Montserrat", san-serif;
+  font-weight: 500;
+  font-size: 25px;
+  color:  #030033;
+  padding: 25px;
+ 
+align-content: center;
+position: relative;
+left:20px;
+  
+
+}
+#about{
+color:  #030033;
+
+position: relative;
+}
+#profile{
+  position: relative;
+  top:50px;
+  left:50px;
+  margin: 25px;
+  width: 300px;
+  height:300px;
+
+
+}
+#aboutpara{
+
+  margin: 10px;
+}
+#aboutd{
+  text-align: center;
+width: 350px;
+position: relative;
+left:500px;
+bottom: 300px;
+
+}
+#compose{
+position: relative;
+left:50px;
+top:5px;
+  margin: 50px;
+}
+#hcompose{
+  font-family: "Montserrat", san-serif;
+  font-weight: 500;
+  font-size: 36px;
+  color: #030033;
+  text-decoration: none;
+}
+p{
+
+   font-family: "Montserrat", san-serif;
+  font-weight: 780;
+  font-size: 24px;
+  color: #030033;
+  text-decoration: none;
+
+}
+#publish
+ { background-color: #030033; /* Green */
+  border: 1px solid green;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  float: left;
+  margin-right: 15px;
+}
+#title 
+{
+    font-size: 20px;
+    text-decoration-style: "Montserrat", san-serif;
+  width: 750px;
+  height: 40px;
+padding:2px;
+}
+#image
+{
+    font-size: 20px;
+    text-decoration-style: "Montserrat", san-serif;
+  width: 750px;
+  height: 40px;
+padding:2px;
+}
+#post {
+  font-size: 17px;
+    text-decoration-style: "Montserrat", san-serif;
+padding: 0px;
+  width:750px;
+  height: 300px;
+  padding:2px;
+}
+h5{
+
+ font-family: "Montserrat", san-serif;
+  font-weight: 500;
+  font-size: 25px;
+  color:  #030033;
+
+
+
+
+}
+ul.blog-post {
+  padding: 25px;
+  list-style: none;
+  font-size: 0px;
+  margin-left: -2.5%;
+}
+
+ul.blog-post li {
+  display: inline-block;
+  border-radius: 3px;
+  padding: 1.5em;
+  width: 400px;
+  margin: 0 0 2.5% 2.5%;
+  background: #fff;
+  border: 1px solid #eee;
+  font-size: 16px;
+  font-size: 1rem;
+  vertical-align: top;
+  box-shadow: 0 0 6px #eee;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+ul.blog-post li img {
+  max-width: 75%;
+  height: auto;
+  margin: 2 2 10px;
+}
+
+ul.blog-post li h3 {
+  margin: 0.6em 0 0.6em;
+  text-align: left!important;
+  font-family: Source Sans Pro, sans-serif;
+  color:#030033;
+  font-size: 1.1em;
+}
+
+ul.blog-post li p {
+  margin: 0.6em 0 1.3em;
+  font-size: .9em;
+  line-height: 1.5em;
+  color: #8c8c8c;
+  text-align: left!important;
+  font-family: Open Sans, sans-serif;
+  font-weight: 300;
+}
+
+#read{
+  text-align: center;
+  width: 20%;
+  border: none;
+  background: rgb(104, 100, 176);
+  font-family: Open Sans, sans-serif;
+  font-weight: 300;
+  font-size: 0.7em;
+  color: white;
+  border-radius: 5px;
+  padding: 8px 15px 8px 15px;
+}
+
+#read:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+ul.blog-post.columns-2 li {
+  width: 37%;
+}
+ 
+@media (max-width: 480px) {
+  ul.grid-nav li {
+    display: block;
+    margin: 0 0 5px;
+  }
+  ul.grid-nav li a {
+    display: block;
+  }
+  ul.blog-post {
+    margin-left: 0;
+  }
+  ul.blog-post li {
+    width: 100% !important;
+    margin: 0 0 20px;
+  }
+}
+
+
+
+.postcontainer {
+   position: relative;
+   left:100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 80%;
+  margin-block: 2rem;
+  gap: 2rem;
+}
+
+img.post{
+  max-width: 400px;
+  max-height:300px;
+  display: block;
+  object-fit: cover;
+}
+
+.card {
+
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  overflow: hidden;
+  box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 1em;
+  background: rgb(199, 197, 237);
+background: linear-gradient(to right, #FFFFFF, rgb(199, 197, 237));
+
+}
+.aboutcard {
+
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  overflow: hidden;
+  box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 1em;
+  background: rgb(199, 197, 237);
+background: linear-gradient(to right, #FFFFFF, #FFD919);
+
+}
+p.post{
+
+font-family: "Montserrat", san-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: black;
+  text-decoration: none;
+
+
+}
+
+
+.card__body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.tag {
+  align-self: flex-start;
+  padding: .25em .75em;
+  border-radius: 1em;
+  font-size: .85rem;
+}
+
+.tag + .tag {
+  margin-left: .5em;
+}
+
+.tag-blue {
+  background: black;
+background: linear-gradient(to bottom, #2F80ED,black);
+  color: #fafafa;
+}
+
+
+.mm-voting {
+  position: relative;
+  left: 950px;
+  text-align: center;
+  width:40px;
+  
+  background: transparent;
+  display: inline-block;
+
+}
+
+.mm-voting input,
+.mm-voting label {
+  background: transparent;
+  display: inline-block;
+}
+.mm-voting__counter{
+
+font-weight:bold ;
+font-family: Comic sans-serif;
+font-size: 20px;
+position: relative;
+top: 60px;
+left: 5px;
+
+}
+.mm-voting input {
+   display: inline-block;
+   /*position: relative;
+   top: 20px;
+   left: -40px;*/
+  border-left: 20px solid transparent;  
+  border-right: 20px solid transparent;
+  border-bottom: 30px solid #41C507;
+  border-top:none;
+  background: transparent;
+  cursor:pointer;
+  height:0;
+  padding: 0;
+  outline:none;
+  text-indent:-99999px;
+}
+.mm-voting input[value="upvote"] { 
+ position: relative;
+  left: -30px;
+  top: 28px;
+}
+.mm-voting input[value="downvote"] { 
+display: inline-block;
+  border-bottom: none;
+  position: relative;
+  left: 40px;
+  
+  border-top: 30px solid #CC0000; 
+}
+
+.mm-voting input:active {
+  border-bottom-color: orange; 
+  border-top-color: orange; 
+}
+
+
+
+
+.home_mm-voting {
+  margin: 0px
+  position: relative;
+   top: -100px;
+   left: 250px;
+  text-align: center;
+  width:30px;
+  display: inline-block;
+}
+
+.home_mm-voting input,
+.home_mm-voting label {
+  display: inline-block;
+}
+.home_mm-voting__counter{
+
+font-weight:bold ;
+font-family: Comic sans-serif;
+font-size: 20px;
+position: relative;
+top: 5px;
+
+}
+.home_mm-voting input {
+   display: inline-block;
+   
+  border-left: 10px solid white;  
+  border-right: 10px solid white;
+  border-bottom: 20px solid #55836A;
+  border-top:none;
+  background:green;
+  cursor:pointer;
+  height:0;
+  padding: 0;
+  outline:none;
+  text-indent:-99999px;
+}
+
+.home_mm-voting input[value="downvote"] { 
+display: inline-block;
+  border-bottom: none;
+  
+  border-top: 20px solid #CC0000; 
+}
+
+.home_mm-voting input:active {
+  border-bottom-color: orange; 
+  border-top-color: orange; 
+}
+/*home css */

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup/Login</title>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  <style>
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #030033;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: rgb(120,106,212);
+}
+
+div {
+  position: relative;
+  top:100px;
+  left:450px;
+  width :500px;
+  height:350px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+  <meta charset="UTF-8">
+</head>
+<header>
+  <h1 class="logo">Blog</h1>
+  <nav>
+    <ul class="nav_links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/compose">Compose</a></li>
+    </ul>
+  </nav>
+  <a class="cta" href="https://www.linkedin.com/in/nitesh-gupta-007/" target="_blank"><img id= "linkedin" style="background-color:white;" height = "40px" width = "40px" src = "\images\linkedin.png"></a>
+  <a class="cta" href="https://mail.google.com/mail/?view=cm&fs=1&to=nitgupta007esh@gmail.com"  target="_blank"><img id= "gmail" style="background-color:white;" height = "40px" width = "50px" src = "\images\gmail.png"></a>
+ 
+</header>
+<body>
+<div>
+  <form action="/signup-login" method="POST">
+    <label for="fname">Email ID</label>
+    <input type="text" id="fname" name="username" placeholder="Your email id..">
+
+    
+
+    <label for="id">Password</label>
+    <input type="text" id="id" name="password" placeholder="Password minimum 8 characters..">
+
+    <input type="submit" value="Sign Up/Sign In">
+
+    <p style="color: red;position: relative;top:30px;font-size: 15px;font-weight: normal;"><%=comment%></p>
+  </form>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<footer>
+<h4 align = "center"> Made by Nitesh Gupta &#128512;</h4>
+</footer>
+
+</body>
+</html>
+

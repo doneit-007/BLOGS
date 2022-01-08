@@ -1,0 +1,27 @@
+<%-include("partials/header")%>
+
+<div class="container">
+ <ul class="blog-post columns-2">
+	<%for(var  i = 0;i<blogs.length;i++){%>
+
+<%var blog = blogs[i];%>
+ <li>
+                      <img src= "<%=blog.imgsrc%>"/>
+                      <h3><%=blog.title%></h3>
+                      
+
+                      <%var subpost = blog.post.slice(0,50);%>
+                      <p><%=subpost%></p>
+                      <%postlink = "/post/" + blog.title%>
+                      <a href = "<%=postlink%>" ><div id = "read" class="button">Read More</div></a>
+                      <%count = "Vote Count " + blog.count;%>
+                      <h6 id = "vote_count"><%=count%></h6>
+
+                    </li>
+                   
+
+<%}%>
+
+</ul>
+</div>
+<%-include("partials/footer")%>

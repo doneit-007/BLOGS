@@ -1,0 +1,26 @@
+<%-include("partials/header")%>
+
+
+<div class="postcontainer">
+  <div class="card">
+    <div class="card__header">
+      <img class = "post" src="<%=blogobj.imgsrc%>" alt="card__image" class="card__image" width="600">
+      </div>
+    <div class="card__body">
+      <%postlink = "/post_edit/" + blogobj.title%>
+      <a href ="<%=postlink%>"><span class="tag tag-blue"><%=blogobj.date%></span></a>
+      <h5><%=blogobj.title%></h5>
+      <p class = "post"><%=blogobj.post%></p>
+    </div>
+
+    <div class="mm-voting">
+  <label class="mm-voting__counter"><%=blogobj.count%></label>
+  <input type="button" value="upvote"  />
+  <input type="button" value="downvote" />
+</div>
+    </div>
+    
+</div>
+
+
+<%-include("partials/footer")%>

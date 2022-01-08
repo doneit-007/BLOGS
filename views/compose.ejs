@@ -1,0 +1,23 @@
+<%-include("partials/header")%>
+
+<div id = "compose">
+
+<h1 id = "hcompose">Compose</h1>
+<br/>
+<form action = "/compose" method = "POST">
+<p>Title</p>
+<textarea id = "title" name = "blog_title" ></textarea>
+<br/>
+<br/>
+<p>Date</p>
+<textarea id = "image"  name = "blog_date"></textarea>
+<br/>
+<br/>
+<p>Post</p>
+<textarea id = "post"  name = "blog_post"></textarea>
+<br/>
+<br/>
+<button  id = "publish" type = "submit">Publish</button>
+</form>
+</div>
+<%-include("partials/footer")%>

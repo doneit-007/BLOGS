@@ -1,0 +1,24 @@
+<%-include("partials/header")%>
+
+<div id = "compose">
+
+<h1 id = "hcompose">Edit/Delete</h1>
+<br/>
+<form action = "/post_edit" method = "POST">
+<p>Title</p>
+<textarea id = "title" name = "blog_title" ></textarea>
+<br/>
+<br/>
+<p>Date</p>
+<textarea id = "image"  name = "blog_date"></textarea>
+<br/>
+<br/>
+<p>Post</p>
+<textarea id = "post"  name = "blog_post"></textarea>
+<br/>
+<br/>
+<button  id = "publish" type = "submit" name= "edit" value = "<%=blogtitle%>">Edit and Publish</button>
+<button  id = "publish" type = "submit" name= "delete" value = "<%=blogtitle%>">Delete</button>
+</form>
+</div>
+<%-include("partials/footer")%>
