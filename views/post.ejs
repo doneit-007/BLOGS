@@ -8,15 +8,21 @@
       </div>
     <div class="card__body">
       <%postlink = "/post_edit/" + blogobj.title%>
+      <%uppost = "/post/" + blogobj.title  + "?vote=upvote" %>
+      <%downpost = "/post/" + blogobj.title + "?vote=downvote" %>
       <a href ="<%=postlink%>"><span class="tag tag-blue"><%=blogobj.date%></span></a>
       <h5><%=blogobj.title%></h5>
       <p class = "post"><%=blogobj.post%></p>
     </div>
 
     <div class="mm-voting">
+       <%console.log(blogobj.count)%>
+       
   <label class="mm-voting__counter"><%=blogobj.count%></label>
-  <input type="button" value="upvote"  />
-  <input type="button" value="downvote" />
+  <form action = "<%=uppost%>" method="POST">
+  <input type="submit"  value="upvote" formaction="<%=uppost%>" />
+  <input type="submit" value="downvote" formaction="<%=downpost%>"/>
+</form>
 </div>
     </div>
     

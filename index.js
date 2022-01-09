@@ -25,6 +25,24 @@ saveUninitialized:false
 app.use(passport.initialize());
 app.use(passport.session());
 mongoose.connect("mongodb://localhost:27017/blogsDB");
+
+
+
+const userSchema = new mongoose.Schema({
+  username:String,
+  password:String
+
+});
+
+userSchema.plugin(passportLocalMongoose);
+User = mongoose.model('user',userSchema);
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+const votecount  = {
+  username:String,
+  votevalue:Number
+}
 const blogSchema = new mongoose.Schema({
   title:{
     required:true,
@@ -44,22 +62,11 @@ const blogSchema = new mongoose.Schema({
     type:String
 
   },
-count:Number
-});
 
+  vote:[votecount],
+  count:Number
+});
 const Blog = mongoose.model('Blog',blogSchema);
-const userSchema = new mongoose.Schema({
-  username:String,
-  password:String
-
-});
-
-userSchema.plugin(passportLocalMongoose);
-User = mongoose.model('user',userSchema);
-passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
 app.get('/',function(req,res){
 
   if(req.isAuthenticated())
@@ -214,14 +221,16 @@ app.post('/compose',function(req,res){
          var blog = new Blog({title: req.body.blog_title,
     post:req.body.blog_post,
     imgsrc:src +req.body.blog_date + ".jpg" ,
-      date :req.body.blog_date ,count:0});
+      date :req.body.blog_date ,count:0,
+      votecount:[]});
          blog.save();
        } 
      else {
           var blog = new Blog({title: req.body.blog_title,
     post:req.body.blog_post,
     imgsrc: src+ req.body.blog_date + ".png" ,
-      date :req.body.blog_date,count:0});
+      date :req.body.blog_date,count:0,
+    votecount:[]});
           blog.save();
       }
   
@@ -259,21 +268,140 @@ app.get('/post/:blogtitle',function(req,res){
  });
 
 });
-app.post('/post/:blogtitle',function(req,res){
+
+
+/*app.post('/post/:blogtitle',function(req,res){
   
- Blog.findOne({title:req.params.blogtitle},function(err,blog){
- if(blog){
-   res.render('post',{blogobj:blog});
+  if(req.isAuthenticated())
+  { 
+
+        if(req.query.vote=='upvote')
+        {    
+
+              Blog.findOne({title:req.params.blogtitle},{upvote:{$elemMatch:{user:req.user}}}, function (err, user) {
+                 if(err)
+                  {console.log(err);res.redirect('/post/'+ req.params.blogtitle);}
+
+                 else if(user)
+                 {res.redirect('/post/'+ req.params.blogtitle);}
+               else
+               {     
+
+                 
+                Blog.findOne({title:req.params.blogtitle},{downvote:{$elemMatch:{user:req.user}}}, function (err, user1) {
+
+                 
+                   if(err)
+                  {console.log(err);res.redirect('/post/'+ req.params.blogtitle);}
+                else if(user)
+                 { console.log("downvote  memila");
+                  res. redirect('/post/'+ req.params.blogtitle);}
+               else
+               {
+                console.log("nhi mila");
+                Blog.findOne({title:req.params.blogtitle},function(err,blog){
+                blog.push(item1);
+                 blog.save();
+  
+                      });
+                res.redirect('/post/'+ req.params.blogtitle);
+              }
+                            
+               });
+             }
+                
+           });
+        }
+        else
+        {
+
+               
+
+
+
+
+        }
+
 
  }
- else
-  res.send("Page not found");
+  else
+  {
 
- });
+    res.redirect('/signup-login?valid=' + "You are not logged in !!");
+  }
 
 });
+*/
+app.post('/post/:blogtitle',function(req,res){
+  
+  if(req.isAuthenticated())
+  { 
+
+        
+                  Blog.findOne({title:req.params.blogtitle},function(err,blog){
+
+                       if(err)
+                       {
+                              console.log(err);
+
+                       }
+                       else if(blog)
+                       {
+                                       var flag = 0;
+                           for(var i = 0;i<blog.vote.length;i++)
+                           { 
+                                    if(blog.vote[i].username==req.user.username)
+                                      flag =1;
+
+                           }
+                           if(!flag)
+                           { 
+                                   if(req.query.vote=='upvote')
+                                      {
+
+                                         blog.vote.push({
+                                          username:req.user.username,
+                                          votevalue:1
+                                         });
+                                         blog.count++;
+                                         blog.save();
+                                         }
+                                         else
+                                         {
+                                             blog.vote.push({
+                                          username:req.user.username,
+                                          votevalue:-1
+                                         });
+                                         blog.count--;
+                                         blog.save();
 
 
+                                         } 
+
+                           }
+                          
+
+                      
+                         
+
+
+                       }
+                       
+
+                });
+
+        
+        
+  res.redirect('/post/'+ req.params.blogtitle);
+
+ }
+  else
+  {
+
+    res.redirect('/signup-login?valid=' + "You are not logged in !!");
+  }
+
+});
 app.get('/post_edit/:blogtitle',function(req,res){
   
 
@@ -288,7 +416,7 @@ app.get('/post_edit/:blogtitle',function(req,res){
    else
      {
   
-            res.redirect('/post/req.params.blogtitle');
+            res.redirect('/post/'+req.params.blogtitle);
     
      }
 }
