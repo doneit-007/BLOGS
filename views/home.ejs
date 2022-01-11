@@ -14,11 +14,16 @@
                       <p><%=subpost%></p>
                       <%postlink = "/post/" + blog.title%>
                       <a href = "<%=postlink%>" ><div id = "read" class="button">Read More</div></a>
-                      <%count = "Vote Count " + blog.count;%>
-                      <h6 id = "vote_count"><%=count%></h6>
-
+  
+                                           
+  <span class="home_mm-voting__counter"><%=blog.count%></span>
+<input class = "home_vote_upvote" type="submit"  value="upvote" />
+<input class = "home_vote_downvote" type="submit" value="downvote" />
                     </li>
-                   
+                    
+       
+
+
 
 <%}%>
 

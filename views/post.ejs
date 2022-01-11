@@ -14,11 +14,12 @@
       <h5><%=blogobj.title%></h5>
       <p class = "post"><%=blogobj.post%></p>
     </div>
-
+<p id = "vote_comment"><%=vote_comment%></p>
     <div class="mm-voting">
-       <%console.log(blogobj.count)%>
+       
        
   <label class="mm-voting__counter"><%=blogobj.count%></label>
+
   <form action = "<%=uppost%>" method="POST">
   <input type="submit"  value="upvote" formaction="<%=uppost%>" />
   <input type="submit" value="downvote" formaction="<%=downpost%>"/>

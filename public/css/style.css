@@ -199,10 +199,11 @@ h5{
 
 }
 ul.blog-post {
-  padding: 25px;
+
+  padding: 20px;
   list-style: none;
   font-size: 0px;
-  margin-left: -2.5%;
+  margin-left: -1.5%;
 }
 
 ul.blog-post li {
@@ -210,7 +211,7 @@ ul.blog-post li {
   border-radius: 3px;
   padding: 1.5em;
   width: 400px;
-  margin: 0 0 2.5% 2.5%;
+  margin: 0 0 1.0% 2.5%;
   background: #fff;
   border: 1px solid #eee;
   font-size: 16px;
@@ -226,6 +227,7 @@ ul.blog-post li img {
   max-width: 75%;
   height: auto;
   margin: 2 2 10px;
+  margin-right: 5px;
 }
 
 ul.blog-post li h3 {
@@ -427,55 +429,77 @@ display: inline-block;
 }
 
 
+#vote_comment{
 
-
-.home_mm-voting {
-  margin: 0px
+  color: red;
   position: relative;
-   top: -100px;
-   left: 250px;
-  text-align: center;
-  width:30px;
-  display: inline-block;
+  top:80px;
+  left: 650px;
+  font-size: 20px;
+  font-weight: normal;
+
 }
 
-.home_mm-voting input,
-.home_mm-voting label {
-  display: inline-block;
-}
+
+
 .home_mm-voting__counter{
 
 font-weight:bold ;
+color: black;
 font-family: Comic sans-serif;
 font-size: 20px;
 position: relative;
-top: 5px;
+left: 360px;
+top:-35px ;
+margin-bottom: 0px;
+
+
 
 }
-.home_mm-voting input {
+  /*
+  */
+.home_vote_upvote {
+    position: relative;
+left: 310px;
+top:-40px;
    display: inline-block;
-   
-  border-left: 10px solid white;  
-  border-right: 10px solid white;
-  border-bottom: 20px solid #55836A;
+  border-left: 10px solid transparent;  
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid #41C507;
   border-top:none;
-  background:green;
-  cursor:pointer;
+  background: transparent;
+  
+  height:0;
+  padding: 0;
+  margin-bottom: 0px;
+  outline:none;
+  text-indent:-99999px;
+}
+.home_vote_downvote{
+
+   display: inline-block;
+  border-left: 10px solid transparent;  
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid #41C507;
+  border-top:none;
+  background: transparent;
+  
   height:0;
   padding: 0;
   outline:none;
   text-indent:-99999px;
+    margin-bottom: 0px;
+    margin-right: 0px;
 }
 
-.home_mm-voting input[value="downvote"] { 
+.home_vote_downvote{ 
 display: inline-block;
   border-bottom: none;
+  position: relative;
+left: 345px;
+top:-20px;
+ 
   
   border-top: 20px solid #CC0000; 
 }
 
-.home_mm-voting input:active {
-  border-bottom-color: orange; 
-  border-top-color: orange; 
-}
-/*home css */

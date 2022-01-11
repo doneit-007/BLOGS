@@ -72,7 +72,7 @@ app.get('/',function(req,res){
   if(req.isAuthenticated())
   { 
   Blog.find({},function(err,blogs){
-    res.render('home',{blogs:blogs});
+    res.render('home',{blogs:blogs,header:"Logout"});
   });}
   else
   {
@@ -84,15 +84,28 @@ app.get('/',function(req,res){
 
 }); 
 app.get('/about',function(req,res){
-  
-  res.render('about');
+  if(req.user)
+  res.render('about',{header:"Logout"});
+else
+  res.render('about',{header:"Login"});
 });
 app.get('/signup-login',function(req,res){
+
+
+
    var passedVariable = req.query.valid;
    if (typeof(passedVariable) != "undefined")
-  res.render('login',{comment:passedVariable});
+   {
+      if(req.user)
+  res.render('login',{comment:passedVariable,header:"Logout"});
 else
-  res.render('login',{comment:""});
+  res.render('login',{comment:passedVariable,header:"Login"});
+}
+else
+{    
+  req.logout();
+  res.render('login',{comment:"",header:"Login"});
+}
 });
 
 app.post('/signup-login',function(req,res,next){
@@ -192,7 +205,7 @@ app.get('/compose',function(req,res){
    if(req.isAuthenticated())
   {  
      if(req.user.username==process.env.ADMIN)
-       res.render('compose');
+       res.render('compose',{header:"Logout"});
 else
 {
   var string = encodeURIComponent('You are not admin !!');
@@ -202,7 +215,7 @@ else
 }
   else
   {
-     var string = encodeURIComponent('You are not admin !!');
+     var string = encodeURIComponent('You are not logged in !!');
   res.redirect('/signup-login?valid=' + string);
   }
   
@@ -259,7 +272,20 @@ app.get('/post/:blogtitle',function(req,res){
   
  Blog.findOne({title:req.params.blogtitle},function(err,blog){
  if(blog){
-   res.render('post',{blogobj:blog});
+   console.log(req.query);
+   if(req.query.vote)
+   {   if(req.query.vote=="voted")
+      res.render('post',{blogobj:blog,header:"Logout",vote_comment:"You can't unvote/revote"});
+      else
+      {
+        res.render('post',{blogobj:blog,header:"Logout",vote_comment:"Thanks for you vote"});
+      }
+ }
+ else
+ {
+              res.render('post',{blogobj:blog,header:"Logout",vote_comment:""});
+
+ }
 
  }
  else
@@ -270,90 +296,31 @@ app.get('/post/:blogtitle',function(req,res){
 });
 
 
-/*app.post('/post/:blogtitle',function(req,res){
-  
-  if(req.isAuthenticated())
-  { 
 
-        if(req.query.vote=='upvote')
-        {    
-
-              Blog.findOne({title:req.params.blogtitle},{upvote:{$elemMatch:{user:req.user}}}, function (err, user) {
-                 if(err)
-                  {console.log(err);res.redirect('/post/'+ req.params.blogtitle);}
-
-                 else if(user)
-                 {res.redirect('/post/'+ req.params.blogtitle);}
-               else
-               {     
-
-                 
-                Blog.findOne({title:req.params.blogtitle},{downvote:{$elemMatch:{user:req.user}}}, function (err, user1) {
-
-                 
-                   if(err)
-                  {console.log(err);res.redirect('/post/'+ req.params.blogtitle);}
-                else if(user)
-                 { console.log("downvote  memila");
-                  res. redirect('/post/'+ req.params.blogtitle);}
-               else
-               {
-                console.log("nhi mila");
-                Blog.findOne({title:req.params.blogtitle},function(err,blog){
-                blog.push(item1);
-                 blog.save();
-  
-                      });
-                res.redirect('/post/'+ req.params.blogtitle);
-              }
-                            
-               });
-             }
-                
-           });
-        }
-        else
-        {
-
-               
-
-
-
-
-        }
-
-
- }
-  else
-  {
-
-    res.redirect('/signup-login?valid=' + "You are not logged in !!");
-  }
-
-});
-*/
 app.post('/post/:blogtitle',function(req,res){
   
   if(req.isAuthenticated())
   { 
-
+                 var flag = 0;
         
                   Blog.findOne({title:req.params.blogtitle},function(err,blog){
 
                        if(err)
                        {
                               console.log(err);
+                              res.redirect('/post/'+ req.params.blogtitle);
 
                        }
                        else if(blog)
                        {
-                                       var flag = 0;
+                                       
                            for(var i = 0;i<blog.vote.length;i++)
                            { 
                                     if(blog.vote[i].username==req.user.username)
                                       flag =1;
 
                            }
+                           
                            if(!flag)
                            { 
                                    if(req.query.vote=='upvote')
@@ -376,24 +343,31 @@ app.post('/post/:blogtitle',function(req,res){
                                          blog.save();
 
 
-                                         } 
+                                         }
+                                         res.redirect('/post/'+ req.params.blogtitle + "?vote=unvoted"); 
 
                            }
+                           else
+                              res.redirect('/post/'+ req.params.blogtitle + "?vote=voted");
                           
-
+          
                       
                          
 
 
                        }
+                       else
+                       {
+                        res.redirect('/post/'+ req.params.blogtitle);
+                       }
+
                        
 
                 });
-
+ 
         
-        
-  res.redirect('/post/'+ req.params.blogtitle);
 
+ 
  }
   else
   {
@@ -410,7 +384,7 @@ app.get('/post_edit/:blogtitle',function(req,res){
      if(req.user.username==process.env.ADMIN)
        {  Blog.findOne({title:req.params.blogtitle},function(err,blog){
         
-          res.render('post_edit',{blog:blog});
+          res.render('post_edit',{blog:blog,header:"Logout"});
            });
        }
    else
